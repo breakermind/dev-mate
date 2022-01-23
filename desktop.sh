@@ -93,6 +93,10 @@ mysql -u root -e "FLUSH PRIVILEGES;"
 
 # RESTART
 echo "Startind...RESTART"
+
+sudo chown -R www-data:www-data /etc/nginx/sites-enabled
+sudo chmod -R 2775 /etc/nginx/sites-enabled
+
 sudo service php7.4-fpm restart
 sudo service php8.0-fpm restart
 sudo service php8.1-fpm restart
