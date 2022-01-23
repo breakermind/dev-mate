@@ -75,12 +75,20 @@ sudo ufw enable
 echo "Startind...MYSQL"
 sudo apt install -y mariadb-server
 
+mysql -u root -e "SET GLOBAL FOREIGN_KEY_CHECKS=0;"
+mysql -u root < /home/max/www/food.xx/database/food-2021-10-18.sql
+mysql -u root -e "SET GLOBAL FOREIGN_KEY_CHECKS=1;"
+
 mysql -u root -e "CREATE DATABASE `app_xx` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 mysql -u root -e "CREATE DATABASE `app_xx_testing` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 mysql -u root -e "GRANT ALL ON app_xx.* TO 'app_xx'@'localhost' IDENTIFIED BY 'toor' WITH GRANT OPTION;"
 mysql -u root -e "GRANT ALL ON app_xx.* TO 'app_xx'@'127.0.0.1' IDENTIFIED BY 'toor' WITH GRANT OPTION;"
+
+mysql -u root -e "CREATE DATABASE `food` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+mysql -u root -e "CREATE DATABASE `food_testing` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 mysql -u root -e "GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY 'toor' WITH GRANT OPTION;"
 mysql -u root -e "GRANT ALL ON *.* TO 'root'@'127.0.0.1' IDENTIFIED BY 'toor' WITH GRANT OPTION;"
+
 mysql -u root -e "FLUSH PRIVILEGES;"
 
 # RESTART
