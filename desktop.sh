@@ -73,23 +73,41 @@ sudo ufw enable
 
 # MYSQL
 echo "Startind...MYSQL"
+sudo apt remove -y --purge mariadb-server
+sudo apt autoremove -y
+sudo rm -rf /var/lib/mysql
+
 sudo apt install -y mariadb-server
 
-mysql -u root -e "SET GLOBAL FOREIGN_KEY_CHECKS=0;"
-mysql -u root < /home/max/www/food.xx/database/food-2021-10-18.sql
-mysql -u root -e "SET GLOBAL FOREIGN_KEY_CHECKS=1;"
+mysql -u root -e "
+DELETE FROM mysql.user WHERE User='';
+DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
+DROP DATABASE IF EXISTS test;
+DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
+"
 
-mysql -u root -e "CREATE DATABASE `app_xx` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-mysql -u root -e "CREATE DATABASE `app_xx_testing` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-mysql -u root -e "GRANT ALL ON app_xx.* TO 'app_xx'@'localhost' IDENTIFIED BY 'toor' WITH GRANT OPTION;"
-mysql -u root -e "GRANT ALL ON app_xx.* TO 'app_xx'@'127.0.0.1' IDENTIFIED BY 'toor' WITH GRANT OPTION;"
+mysql -u root -e "
+CREATE DATABASE app_xx CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE app_xx_testing CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-mysql -u root -e "CREATE DATABASE `food` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-mysql -u root -e "CREATE DATABASE `food_testing` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-mysql -u root -e "GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY 'toor' WITH GRANT OPTION;"
-mysql -u root -e "GRANT ALL ON *.* TO 'root'@'127.0.0.1' IDENTIFIED BY 'toor' WITH GRANT OPTION;"
+CREATE DATABASE food CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE food_testing CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-mysql -u root -e "FLUSH PRIVILEGES;"
+GRANT ALL ON app_xx.* TO 'app_xx'@'localhost' IDENTIFIED BY 'toor' WITH GRANT OPTION;
+GRANT ALL ON app_xx.* TO 'app_xx'@'127.0.0.1' IDENTIFIED BY 'toor' WITH GRANT OPTION;
+
+GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY 'toor' WITH GRANT OPTION;
+GRANT ALL ON *.* TO 'root'@'127.0.0.1' IDENTIFIED BY 'toor' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+"
+
+### db_root_password=toor
+### mysql -u root -e "UPDATE mysql.user SET Password=PASSWORD('${db_root_password}') WHERE User='root';
+
+mysql -u root -ptoor -e "SET GLOBAL FOREIGN_KEY_CHECKS=0;"
+mysql -u root -ptoor < /home/max/www/food.xx/database/food-2021-10-18.sql
+mysql -u root -ptoor -e "SET GLOBAL FOREIGN_KEY_CHECKS=1;"
 
 # RESTART
 echo "Startind...RESTART"
@@ -104,6 +122,11 @@ sudo service nginx restart
 sudo service mariadb restart
 sudo service postfix restart
 
+# PERMISSIONS
+sudo mkdir -p /home/max/www
+sudo chown -R www-data:max /home/max/www
+sudo chmod -R 2775 /home/max/www
+
 # DESKTOP
 echo "Startind...DESKTOP"
 sudo apt install -y mate-tweak gthumb vlc
@@ -117,3 +140,8 @@ sudo apt autoremove -y
 # MAIL
 echo "Startind...MAIL"
 echo "Test mail" | mail -s "Hello Maxiu" max@app.xx
+
+# SCRIPTS Laravel
+cd /home/max/www/app.xx && php artisan migrate:fresh --seed && php artisan storage:link
+cd /home/max/www/food.xx && php artisan storage:link
+
