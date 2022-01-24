@@ -129,7 +129,13 @@ sudo chmod -R 2775 /home/max/www
 
 # DESKTOP
 echo "Startind...DESKTOP"
-sudo apt install -y mate-tweak gthumb vlc
+sudo apt install -y mate-tweak gthumb webp vlc
+
+# THUMBNAILS
+rm -rf ~/.cache/thumbnails
+echo "[Thumbnailer Entry]" > /usr/share/thumbnailers/webp.thumbnailer
+echo "Exec=/usr/bin/dwebp %i -scale 100 75 -o %o" >> /usr/share/thumbnailers/webp.thumbnailer
+echo "MimeType=image/x-webp;image/webp;" >> /usr/share/thumbnailers/webp.thumbnailer
 
 # REMOVE
 echo "Startind...REMOVE"
