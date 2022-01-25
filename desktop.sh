@@ -144,7 +144,7 @@ echo "MimeType=image/x-webp;image/webp;" >> /usr/share/thumbnailers/webp.thumbna
 # REMOVE
 echo "Startind...REMOVE"
 sudo apt remove --purge libreoffice* -y
-sudo apt remove --purge avahi -y
+sudo apt remove --purge avahi* -y
 sudo apt autoremove -y
 
 # MAIL
