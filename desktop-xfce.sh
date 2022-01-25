@@ -133,7 +133,7 @@ sudo chmod -R 2775 /home/max/www/app.xx/storage
 
 # DESKTOP
 echo "Startind...DESKTOP"
-sudo apt install -y mate-tweak gthumb webp vlc
+sudo apt install -y gthumb webp vlc
 
 # THUMBNAILS
 rm -rf /home/max/.cache/thumbnails
@@ -154,4 +154,3 @@ echo "Test mail" | mail -s "Hello Maxiu" max@app.xx
 # SCRIPTS Laravel
 cd /home/max/www/app.xx && composer update && php artisan migrate:fresh --seed && php artisan storage:link
 cd /home/max/www/food.xx && composer update && php artisan storage:link
-

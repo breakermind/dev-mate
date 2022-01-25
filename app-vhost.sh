@@ -24,7 +24,7 @@ server {
 
 	location ~ \.php$ {
 		# fastcgi_pass 127.0.0.1:9000;
-		fastcgi_pass unix:/run/php/php8.0-fpm.sock;
+		fastcgi_pass unix:/run/php/php8.1-fpm.sock;
 		include snippets/fastcgi-php.conf;
 	}
 
@@ -61,7 +61,7 @@ server {
 
 	location ~ \.php$ {
 		# fastcgi_pass 127.0.0.1:9000;
-		fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+		fastcgi_pass unix:/run/php/php8.1-fpm.sock;
 		include snippets/fastcgi-php.conf;
 	}
 
@@ -98,7 +98,7 @@ server {
 
 	location ~ \.php$ {
 		# fastcgi_pass 127.0.0.1:9000;
-		fastcgi_pass unix:/run/php/php8.0-fpm.sock;
+		fastcgi_pass unix:/run/php/php8.1-fpm.sock;
 		include snippets/fastcgi-php.conf;
 	}
 
@@ -135,7 +135,7 @@ server {
 
 	location ~ \.php$ {
 		# fastcgi_pass 127.0.0.1:9000;
-		fastcgi_pass unix:/run/php/php8.0-fpm.sock;
+		fastcgi_pass unix:/run/php/php8.1-fpm.sock;
 		include snippets/fastcgi-php.conf;
 	}
 
