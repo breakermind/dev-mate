@@ -7,7 +7,7 @@ sudo bash desktop.sh
 ## Instalacja systemu (user: max)
 Podczas ponownej instalacji nie formatuj drugiej partycji pliki i ustawienia użytkowników zostaną na dysku.
 ```txt
-Instalując system utwórz cztery linuksowe partycje (ext4):
+Instalując system utwórz cztery partycje trzy (ext4) i jedną (fat32):
 - główna z punktem montowania (/) na system
 - druga (/home) na pliki i ustawienia użytkowników (ikony, skórki, klucze ssh, strony www)
 - trzecia (swap) ok 4GB na pliki tymczasowe
