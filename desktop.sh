@@ -132,7 +132,7 @@ echo "Startind...DESKTOP"
 sudo apt install -y mate-tweak gthumb webp vlc
 
 # THUMBNAILS
-rm -rf ~/.cache/thumbnails
+rm -rf /home/max/.cache/thumbnails
 echo "[Thumbnailer Entry]" > /usr/share/thumbnailers/webp.thumbnailer
 echo "Exec=/usr/bin/dwebp %i -scale 100 75 -o %o" >> /usr/share/thumbnailers/webp.thumbnailer
 echo "MimeType=image/x-webp;image/webp;" >> /usr/share/thumbnailers/webp.thumbnailer
