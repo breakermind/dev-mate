@@ -124,7 +124,7 @@ sudo service postfix restart
 
 # PERMISSIONS
 sudo mkdir -p /home/max/www
-sudo chown -R www-data:max /home/max/www
+sudo chown -R max:www-data /home/max/www
 sudo chmod -R 2775 /home/max/www
 
 # DESKTOP
