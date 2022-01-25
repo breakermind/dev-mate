@@ -126,6 +126,10 @@ sudo service postfix restart
 sudo mkdir -p /home/max/www
 sudo chown -R max:www-data /home/max/www
 sudo chmod -R 2775 /home/max/www
+# Laravel app storage
+sudo chown -R www-data:max /home/max/www/app.xx/storage/app
+sudo chown -R www-data:max /home/max/www/app.xx/storage/logs
+sudo chmod -R 2775 /home/max/www/app.xx/storage
 
 # DESKTOP
 echo "Startind...DESKTOP"
