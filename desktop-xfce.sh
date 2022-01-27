@@ -6,6 +6,10 @@ echo "woo" > /etc/hostname
 
 echo "127.0.0.1 app.xx food.xx vue.xx woo.xx db.xx" >> /etc/hosts
 
+echo "nameserver 1.1.1.1" > /etc/resolv.conf
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+chattr +i /etc/resolv.conf
+
 sudo apt install -y apt-transport-https
 
 sudo sed -i 's/http\:/https\:/g' /etc/apt/sources.list
@@ -14,7 +18,7 @@ sudo apt update -y
 
 # PHP
 echo "Startind...PHP"
-sudo apt install -y curl wget gnupg2 ca-certificates lsb-release software-properties-common
+sudo apt install -y curl wget zip gnupg2 ca-certificates lsb-release software-properties-common
 
 sudo curl https://packages.sury.org/php/apt.gpg | gpg --dearmor > /usr/share/keyrings/sury-php.gpg
 sudo echo "deb [signed-by=/usr/share/keyrings/sury-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/sury-php.list
@@ -133,7 +137,7 @@ sudo chmod -R 2775 /home/max/www/app.xx/storage
 
 # DESKTOP
 echo "Startind...DESKTOP"
-sudo apt install -y gthumb webp vlc
+sudo apt install -y gthumb webp vlc lightdm-gtk-greeter-settings
 
 # THUMBNAILS
 rm -rf /home/max/.cache/thumbnails
