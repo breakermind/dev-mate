@@ -100,6 +100,9 @@ CREATE DATABASE food_testing CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 GRANT ALL ON app_xx.* TO 'app_xx'@'localhost' IDENTIFIED BY 'toor' WITH GRANT OPTION;
 GRANT ALL ON app_xx.* TO 'app_xx'@'127.0.0.1' IDENTIFIED BY 'toor' WITH GRANT OPTION;
 
+GRANT ALL ON app_xx_testing.* TO 'app_xx'@'localhost' IDENTIFIED BY 'toor' WITH GRANT OPTION;
+GRANT ALL ON app_xx_testing.* TO 'app_xx'@'127.0.0.1' IDENTIFIED BY 'toor' WITH GRANT OPTION;
+
 GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY 'toor' WITH GRANT OPTION;
 GRANT ALL ON *.* TO 'root'@'127.0.0.1' IDENTIFIED BY 'toor' WITH GRANT OPTION;
 
