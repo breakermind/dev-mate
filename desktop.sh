@@ -154,8 +154,3 @@ sudo apt autoremove -y
 # MAIL
 echo "Startind...MAIL"
 echo "Test mail" | mail -s "Hello Maxiu" max@app.xx
-
-# SCRIPTS Laravel
-cd /home/max/www/app.xx && composer update && php artisan migrate:fresh --seed && php artisan storage:link
-cd /home/max/www/food.xx && composer update && php artisan storage:link
-
